@@ -125,7 +125,7 @@ for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
   echo "su  ssss$i -c "\""/usr/local/gost/gost -D -L=ssss$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "中转$wip端口$[ $i+10000 ]账号ssss$i密码$s5pw>	直连`sed -n ''$i'p' /tmp/ip.txt`端口$port账号ssss$i密码$s5pw">>/tmp/s5;
+  echo "内转$wip端口$[ $i+10000 ]账号ssss$i密码$s5pw>	直连`sed -n ''$i'p' /tmp/ip.txt`端口$port账号ssss$i密码$s5pw">>/tmp/s5;
 done
 
 #端口映射
