@@ -19,11 +19,11 @@ if [ "$v" -gt "300" ];then
     echo -e "\033[41m"该服务器IP已经超过300个，你要继续吗！！！按任意键继续...或按 Ctrl+c 取消"  \033[0m"&&read -s -n1
 fi
 #echo -e "\033[33m是否安装过bbr,第一次建议选择 1 否则选择0，默认也不执行(BBR安装时间较久) \033[0m"&&read value
-if [ $value -eq 1 ]; then
-    yum update
-    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gs/main/bbr.sh)
+#if [ $value -eq 1 ]; then
+#    yum update
+#    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gs/main/bbr.sh)
 
-fi
+#fi
 
 
 echo 正在处理，请耐心等待
