@@ -1,6 +1,8 @@
 #!/bin/bash
 #获取本机非127.0.0的ip个数
 
+service ss5 stop
+chkconfig --level 345 ss5 off
 
 cd /etc/sysconfig/network-scripts
 
@@ -38,7 +40,7 @@ fi
 #echo 正在处理，请耐心等待
 rpm -qa|grep "wget" &> /dev/null
 if [ $? == 0 ]; then
-#    echo 环境监测通过
+    echo 环境监测通过
 else
     yum -y install wget
 fi
