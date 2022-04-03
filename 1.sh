@@ -14,12 +14,12 @@ NETMASK=255.255.255.0' >ifcfg-eth0:0
 cd
 
 v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'| wc -l`
-num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
+#num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 
 if [[ "$num" -eq "0" ]];then
 cat >>/etc/sysctl.conf <<END
 disable ipv6
-#net.ipv6.conf.all.disable_ipv6=1
+net.ipv6.conf.all.disable_ipv6=1
 net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.lo.disable_ipv6=1
 END
