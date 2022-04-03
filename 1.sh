@@ -2,7 +2,11 @@
 #获取本机非127.0.0的ip个数
 
 
-
+if [ $(whoami) != "root" ];then
+	echo "请使用root权限运行此一键安装命令！"
+        echo "切换到root用户：sudo su root"
+	exit 1;
+fi
 
 v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'| wc -l`
 num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
