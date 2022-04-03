@@ -102,18 +102,18 @@ if [ "$v" -gt "1" ];then
 #检查用户是否存在，不存在则创建用户
 for i in `seq $v`;
 do
-if id -u user$i>/dev/null 2>&1; then
+if id -u u1>/dev/null 2>&1; then
     echo -e "\033[32m"等待也是一种享受 !!!$i" \033[0m" 
 else
     pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 12)> /tmp/log.log;
-    useradd "user$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
-    #echo "$pw" |passwd --stdin user$i> /tmp/sar.log;
-    #echo "user$i    ALL=(ALL)    ALL" >> /etc/sudoers  
+    useradd "u1"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
+    #echo "$pw" |passwd --stdin u1> /tmp/sar.log;
+    #echo "u1    ALL=(ALL)    ALL" >> /etc/sudoers  
 fi
 done
 
 #用户UID绑定IP出口
-uid=`awk -F: '/^user1:/{print $4,$5}' /etc/passwd`
+uid=`awk -F: '/^u1:/{print $4,$5}' /etc/passwd`
 uip=$[ $uid-1 ]
 for i in `seq $v`;
 do
@@ -124,8 +124,8 @@ done
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  user$i -c "\""/usr/local/gost/gost -D -L=user$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "方式一：<$wip:$[ $i+$base ]:user$i:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:user$i:$s5pw>">>/tmp/s5;
+  echo "su  u1 -c "\""/usr/local/gost/gost -D -L=u1:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "方式一：<$wip:$[ $i+$base ]:u1:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:u1:$s5pw>">>/tmp/s5;
 done
 
 #端口映射
@@ -138,8 +138,8 @@ done
 else
   echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  root -c "\""/usr/local/gost/gost -D -L=user1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "<$wip:$port:user1:$s5pw>">>/tmp/s5
+  echo "su  root -c "\""/usr/local/gost/gost -D -L=u1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "<$wip:$port:u1:$s5pw>">>/tmp/s5
 fi 
 
 if [[ $(iptables-save -t nat) =~ MASQUERADE ]]; then     echo ".."; else     iptables -t nat -A POSTROUTING -j MASQUERADE> /tmp/log.log; fi
