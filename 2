@@ -42,7 +42,7 @@ fi
 
 num=`at -l| awk -F ' ' '{print $1}'`&&at -d $num #取消任务
 
-wget --no-check-certificate  -P /tmp https://upload.117idc.net/socks5/gost.tar.gz
+wget --no-check-certificate  -P /tmp https://raw.githubusercontent.com/bashensanbuqu/gs/master/gost.tar.gz
 
 if [[ ! -f "/tmp/gost.tar.gz" ]]; then
  echo -e "\033[41m"下载失败请检查网络，或者联系脚本作者 WX：com117idc "\033[0m"&&set -e
