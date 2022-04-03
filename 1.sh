@@ -67,8 +67,8 @@ fi
 #      if [ $value -eq 1 ]; then
             yum -y install lrzsz
             echo -e "\033[41m" 开始导出，请注意文件名是s5 "\033[0m"
-            sz /tmp/s5.txt
-            echo -e "\033[41m" 请注意，文件名是 s5.txt "\033[0m"
+            sz /tmp/s5
+            echo -e "\033[41m" 请注意，文件名是 s5 "\033[0m"
  #     fi
       
       
