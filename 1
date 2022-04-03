@@ -21,7 +21,7 @@ fi
 echo -e "\033[33m是否安装过bbr,第一次建议选择 1 否则选择0，默认也不执行(BBR安装时间较久) \033[0m"&&read value
 if [ $value -eq 1 ]; then
     yum update
-    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gs/master/bbr.sh)
+    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gs/gs/main/bbr.sh)
 
 fi
 
