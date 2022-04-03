@@ -8,7 +8,7 @@ echo 'DEVICE=eth0:1
 BOOTPROTO=static
 ONBOOT=yes
 IPADDR=10.0.0.11
-NETMASK=255.255.255.0' >ifcfg-eth0:0
+NETMASK=255.255.255.0' >ifcfg-eth0:1
 
 /etc/init.d/network restart
 cd
