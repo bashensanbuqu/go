@@ -35,9 +35,9 @@ else
 fi
 
 
-echo "脚本由 www.117idc.com 提供。专业的服务器提供商~"
-echo -e "\033[33m 请输入我们的暗号~ \033[0m"&&read id
-if [ "$id" = "www.117idc.com" ];then
+#echo "脚本由 www.117idc.com 提供。专业的服务器提供商~"
+#echo -e "\033[33m 请输入我们的暗号~ \033[0m"&&read id
+#if [ "$id" = "www.117idc.com" ];then
    echo 正在处理，请耐心等待
    echo -e "\033[33m-------若为多IP服务器请确认是否已配置好IP地址...按任意键继续 或按 Ctrl+c 取消-------\033[0m"&&read -s -n1
    echo;rm -fr /tmp/cut&&touch /tmp/cut
@@ -77,9 +77,9 @@ if [ "$id" = "www.117idc.com" ];then
    else
       echo -e "\033[41m安装失败!!! 未知错误 \033[0m"
    fi
-else 
-   echo 
-   echo -e "\033[41m" 模式错误。该工具仅限内部使用 "\033[0m"
-   echo 
+#else 
+#   echo 
+#   echo -e "\033[41m" 模式错误。该工具仅限内部使用 "\033[0m"
+#   echo 
 
-fi
+#fi
