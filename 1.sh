@@ -1,8 +1,6 @@
 #!/bin/bash
 #获取本机非127.0.0的ip个数
 
-#service ss5 stop
-#chkconfig --level 345 ss5 off
 
 #cd /etc/sysconfig/network-scripts
 
