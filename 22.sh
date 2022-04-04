@@ -95,7 +95,7 @@ v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'
 ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'> /tmp/ip.txt
 lip=`sed -n ''1'p' /tmp/ip.txt`&&wip=`curl ipv4.icanhazip.com`;
 port=`grep "port" /tmp/cut|awk -F '=' '{print $2}'`; pass=`grep "pass" /tmp/cut|awk -F '=' '{print $2}'`; rm -fr /tmp/cut
-if [ ! -n "$port" ]; then port=`shuf -i30000-60000 -n1`; else port=$port; fi; base=`shuf -i1000-2900 -n1`0
+if [ ! -n "6666" ]; then port=`shuf -i30000-60000 -n1`; else port=6666; fi; base=`shuf -i1000-2900 -n1`0
 
 if [ "$v" -gt "1" ];then  
     echo -e "\033[33m"这就是传说中的多ip出口服务器"  \033[0m" 
@@ -124,22 +124,22 @@ done
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  ssss1 -c "\""/usr/local/gost/gost -D -L=ssss1:6666@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "内转$wip端口$[ $i+10000 ]账号ssss1密码6666	直连`sed -n ''$i'p' /tmp/ip.txt`端口$port账号ssss1密码6666">>/tmp/s5;
+  echo "su  ssss1 -c "\""/usr/local/gost/gost -D -L=ssss1:6666@`sed -n ''$i'p' /tmp/ip.txt`:6666?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "内转$wip端口$[ $i+10000 ]账号ssss1密码6666	直连`sed -n ''$i'p' /tmp/ip.txt`端口6666账号ssss1密码6666">>/tmp/s5;
 done
 
 #端口映射
 for i in `seq $v`;
 do
-iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+10000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
-iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+10000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
+iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+10000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:6666> /tmp/log.log;
+iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+10000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:6666> /tmp/log.log;
 done
 
 else
   echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  root -c "\""/usr/local/gost/gost -D -L=sss1:6666@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "<$wip:$port:sss1:6666>">>/tmp/s5
+  echo "su  root -c "\""/usr/local/gost/gost -D -L=sss1:6666@$lip:6666?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "<$wip:6666:sss1:6666>">>/tmp/s5
 fi 
 
 if [[ $(iptables-save -t nat) =~ MASQUERADE ]]; then     echo ".."; else     iptables -t nat -A POSTROUTING -j MASQUERADE> /tmp/log.log; fi
