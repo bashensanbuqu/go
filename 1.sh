@@ -1,19 +1,19 @@
 #!/bin/bash
 #获取本机非127.0.0的ip个数
 
-service ss5 stop
-chkconfig --level 345 ss5 off
+#service ss5 stop
+#chkconfig --level 345 ss5 off
 
-cd /etc/sysconfig/network-scripts
+#cd /etc/sysconfig/network-scripts
 
-echo 'DEVICE=eth0:1
-BOOTPROTO=static
-ONBOOT=yes
-IPADDR=10.0.0.11
-NETMASK=255.255.255.0' >ifcfg-eth0:1
+#echo 'DEVICE=eth0:1
+#BOOTPROTO=static
+#ONBOOT=yes
+#IPADDR=10.0.0.11
+#NETMASK=255.255.255.0' >ifcfg-eth0:1
 
-/etc/init.d/network restart
-cd
+#/etc/init.d/network restart
+#cd
 
 v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'| wc -l`
 #num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
