@@ -102,18 +102,18 @@ if [ "$v" -gt "1" ];then
 #检查用户是否存在，不存在则创建用户
 for i in `seq $v`;
 do
-if id -u sss$i>/dev/null 2>&1; then
+if id -u s$i>/dev/null 2>&1; then
     echo -e "\033[32m"等待也是一种享受 !!!$i" \033[0m" 
 else
     pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 12)> /tmp/log.log;
-    useradd "sss$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
-    #echo "$pw" |passwd --stdin sss$i> /tmp/sar.log;
-    #echo "sss$i    ALL=(ALL)    ALL" >> /etc/sudoers  
+    useradd "s$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
+    #echo "$pw" |passwd --stdin s$i> /tmp/sar.log;
+    #echo "s$i    ALL=(ALL)    ALL" >> /etc/sudoers  
 fi
 done
 
 #用户UID绑定IP出口
-uid=`awk -F: '/^sss1:/{print $4,$5}' /etc/passwd`
+uid=`awk -F: '/^s1:/{print $4,$5}' /etc/passwd`
 uip=$[ $uid-1 ]
 for i in `seq $v`;
 do
@@ -124,9 +124,9 @@ done
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  sss$i -c "\""/usr/local/gost/gost -D -L=sss$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-#  echo "$wip/$[ $i+2000 ]/sss$i/$s5pw = `sed -n ''$i'p' /tmp/ip.txt`/$port/sss$i/$s5pw">>/tmp/s5;
-  echo "$wip/$[ $i+2000 ]/sss$i/$s5pw ">>/tmp/s5;
+  echo "su  s$i -c "\""/usr/local/gost/gost -D -L=s$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "$wip/$[ $i+2000 ]/s$i/$s5pw = `sed -n ''$i'p' /tmp/ip.txt`/$port/s$i/$s5pw">>/tmp/s5;
+#  echo "$wip/$[ $i+2000 ]/s$i/$s5pw ">>/tmp/s5;
 done
 
 #端口映射
@@ -139,8 +139,8 @@ done
 else
   echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  root -c "\""/usr/local/gost/gost -D -L=sss1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "<$wip:$port:sss1:$s5pw>">>/tmp/s5
+  echo "su  root -c "\""/usr/local/gost/gost -D -L=s1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "<$wip:$port:s1:$s5pw>">>/tmp/s5
 fi 
 
 if [[ $(iptables-save -t nat) =~ MASQUERADE ]]; then     echo ".."; else     iptables -t nat -A POSTROUTING -j MASQUERADE> /tmp/log.log; fi
