@@ -102,13 +102,13 @@ if [ "$v" -gt "1" ];then
 #检查用户是否存在，不存在则创建用户
 for i in `seq $v`;
 do
-if id -u a$i>/dev/null 2>&1; then
+if id -u $i>/dev/null 2>&1; then
     echo -e "\033[32m"等待也是一种享受 !!!$i" \033[0m" 
 else
     pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 12)> /tmp/log.log;
-    useradd "a$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
-    #echo "$pw" |passwd --stdin a$i> /tmp/sar.log;
-    #echo "a$i    ALL=(ALL)    ALL" >> /etc/sudoers  
+    useradd "$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
+    #echo "$pw" |passwd --stdin $i> /tmp/sar.log;
+    #echo "$i    ALL=(ALL)    ALL" >> /etc/sudoers  
 fi
 done
 
@@ -124,9 +124,9 @@ done
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  a$i -c "\""/usr/local/gost/gost -D -L=a$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-#  echo "$wip/$[ $i+2000 ]/a$i/$s5pw = `sed -n ''$i'p' /tmp/ip.txt`/$port/a$i/$s5pw">>/tmp/s5;
-  echo "$wip/$[ $i+2000 ]/a$i/$s5pw ">>/tmp/s5;
+  echo "su  $i -c "\""/usr/local/gost/gost -D -L=$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+#  echo "$wip/$[ $i+2000 ]/$i/$s5pw = `sed -n ''$i'p' /tmp/ip.txt`/$port/$i/$s5pw">>/tmp/s5;
+  echo "$wip/$[ $i+2000 ]/$i/$s5pw ">>/tmp/s5;
 done
 
 #端口映射
