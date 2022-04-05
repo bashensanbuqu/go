@@ -60,7 +60,7 @@ fi
 #   if [ ! -n "$pass" ]; then
 #   echo -e "\033[33m您输入的密码为空，将使用随机密码！\033[0m" 
 #   else
-   echo -e "\033[33m您输入的密码为：2000\033[0m";echo "pass=2000">>/tmp/cut
+   echo -e "\033[33m您输入的密码为：a\033[0m";echo "pass=a">>/tmp/cut
 #   fi
    echo
    echo -e "\033[35m".........请耐心等待正在安装中........."\033[0m"
