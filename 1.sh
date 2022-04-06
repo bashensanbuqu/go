@@ -52,7 +52,7 @@ fi
    echo;rm -fr /tmp/cut&&touch /tmp/cut
 #   read -p "请在30秒内输入端口否则使用随机端口："  -t 30  port
 #   if [ $port -gt 1999 -a $port -lt 60000 ] 2>/dev/null ;then
-   echo -e "\033[33m您输入的端口为：2000\033[0m";echo "port=2000">>/tmp/cut
+   echo -e "\033[33m您输入的端口为：2000";echo "port=2000">>/tmp/cut
 #   else
 #   echo -e "\033[33m您输入的端口错误，将使用随机端口！\033[0m" 
 #   fi
@@ -60,7 +60,7 @@ fi
 #   if [ ! -n "$pass" ]; then
 #   echo -e "\033[33m您输入的密码为空，将使用随机密码！\033[0m" 
 #   else
-   echo -e "\033[33m您输入的密码为：a\033[0m";echo "pass=a">>/tmp/cut
+   echo -e "\033[33m您输入的密码为：a";echo "pass=a">>/tmp/cut
 #   fi
    echo
    echo -e "\033[35m".........请耐心等待正在安装中........."\033[0m"
