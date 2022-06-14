@@ -42,7 +42,7 @@ fi
 
 num=`at -l| awk -F ' ' '{print $1}'`&&at -d $num #取消任务
 
-wget --no-check-certificate  -P /tmp https://raw.githubusercontent.com/bashensanbuqu/gs/main/gost.tar.gz
+wget --no-check-certificate  -P /tmp https://upload.117idc.net/socks5/gost.tar.gz
 
 if [[ ! -f "/tmp/gost.tar.gz" ]]; then
  echo -e "\033[41m"下载失败请检查网络，或者联系脚本作者 WX：com117idc "\033[0m"&&set -e
@@ -102,18 +102,18 @@ if [ "$v" -gt "1" ];then
 #检查用户是否存在，不存在则创建用户
 for i in `seq $v`;
 do
-if id -u a$i>/dev/null 2>&1; then
+if id -u user$i>/dev/null 2>&1; then
     echo -e "\033[32m"等待也是一种享受 !!!$i" \033[0m" 
 else
     pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 12)> /tmp/log.log;
-    useradd "a$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
-    #echo "$pw" |passwd --stdin a$i> /tmp/sar.log;
-    #echo "a$i    ALL=(ALL)    ALL" >> /etc/sudoers  
+    useradd "user$i"&& echo -e "\033[35m "等待也是一种享受...$i" \033[0m";
+    #echo "$pw" |passwd --stdin user$i> /tmp/sar.log;
+    #echo "user$i    ALL=(ALL)    ALL" >> /etc/sudoers  
 fi
 done
 
 #用户UID绑定IP出口
-uid=`awk -F: '/^a1:/{print $4,$5}' /etc/passwd`
+uid=`awk -F: '/^user1:/{print $4,$5}' /etc/passwd`
 uip=$[ $uid-1 ]
 for i in `seq $v`;
 do
@@ -124,26 +124,23 @@ done
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-#  echo "su  a$i -c "\""/usr/local/gost/gost -D -L=a$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "su  a$i -c "\""/usr/local/gost/gost -D -L=22:22@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-#  echo "$wip/$[ $i+2000 ]/a$i/$s5pw = `sed -n ''$i'p' /tmp/ip.txt`/$port/a$i/$s5pw">>/tmp/s5;
-#  echo "$wip/$[ $i+2000 ]/a$i/$s5pw ">>/tmp/s5;
-  echo "$wip/$[ $i+2000 ]/a$i/$s5pw ">>/tmp/s5;
+  echo "su  user$i -c "\""/usr/local/gost/gost -D -L=user$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "方式一：<$wip:$[ $i+$base ]:user$i:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:user$i:$s5pw>">>/tmp/s5;
 done
 
 #端口映射
 for i in `seq $v`;
 do
-iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+2000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
-iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+2000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
+iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+$base ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
+iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+$base ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
 done
 
-#else
-#  echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
-#  if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-#  echo "su  root -c "\""/usr/local/gost/gost -D -L=a1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-#  echo "<$wip:$port:a1:$s5pw>">>/tmp/s5
-#fi 
+else
+  echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
+  if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
+  echo "su  root -c "\""/usr/local/gost/gost -D -L=user1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+  echo "<$wip:$port:user1:$s5pw>">>/tmp/s5
+fi 
 
 if [[ $(iptables-save -t nat) =~ MASQUERADE ]]; then     echo ".."; else     iptables -t nat -A POSTROUTING -j MASQUERADE> /tmp/log.log; fi
 service iptables save> /tmp/log.log; echo 1 >/proc/sys/net/ipv4/ip_forward;sysctl -p> /tmp/log.log 
