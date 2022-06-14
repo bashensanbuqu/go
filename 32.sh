@@ -125,7 +125,8 @@ for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
   echo "su  aa$i -c "\""/usr/local/gost/gost -D -L=$s5pw:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "方式一：<$wip:$[ $i+$base ]:$s5pw:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:$s5pw:$s5pw>">>/tmp/s5;
+#  echo "方式一：<$wip:$[ $i+$base ]:$s5pw:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:$s5pw:$s5pw>">>/tmp/s5;
+   echo "$wip/$[ $i+$base ]/$s5pw/$s5pw">>/tmp/s5;
 done
 
 #端口映射
@@ -139,7 +140,7 @@ else
   echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
   echo "su  root -c "\""/usr/local/gost/gost -D -L=$s5pw:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "<$wip:$port:$s5pw:$s5pw>">>/tmp/s5
+  echo "$wip/$port/$s5pw/$s5pw">>/tmp/s5
 fi 
 
 if [[ $(iptables-save -t nat) =~ MASQUERADE ]]; then     echo ".."; else     iptables -t nat -A POSTROUTING -j MASQUERADE> /tmp/log.log; fi
