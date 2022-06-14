@@ -37,9 +37,7 @@ net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.lo.disable_ipv6=1
 END
 fi
-#if [ "$v" -gt "300" ];then  
-#    echo -e "\033[41m"该服务器IP已经超过300个，你要继续吗！！！按任意键继续...或按 Ctrl+c 取消"  \033[0m"&&read -s -n1
-#fi
+
 
 
 
