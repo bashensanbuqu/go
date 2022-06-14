@@ -124,9 +124,11 @@ done
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
+#  echo "su  a$i -c "\""/usr/local/gost/gost -D -L=a$i:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
   echo "su  a$i -c "\""/usr/local/gost/gost -D -L=22:22@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
 #  echo "$wip/$[ $i+2000 ]/a$i/$s5pw = `sed -n ''$i'p' /tmp/ip.txt`/$port/a$i/$s5pw">>/tmp/s5;
-  echo "$wip/$[ $i+2000 ]/22/22 ">>/tmp/s5;
+#  echo "$wip/$[ $i+2000 ]/a$i/$s5pw ">>/tmp/s5;
+  echo "$wip/$[ $i+2000 ]/a$i/$s5pw ">>/tmp/s5;
 done
 
 #端口映射
