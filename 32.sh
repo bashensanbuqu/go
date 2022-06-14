@@ -138,12 +138,12 @@ iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+2000 ] -j DNAT --to-d
 iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+2000 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
 done
 
-else
-  echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
-  if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
-  echo "su  root -c "\""/usr/local/gost/gost -D -L=a1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-  echo "<$wip:$port:a1:$s5pw>">>/tmp/s5
-fi 
+#else
+#  echo -e "\033[33m"单ip出口服务器......" \033[0m" ;
+#  if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
+#  echo "su  root -c "\""/usr/local/gost/gost -D -L=a1:$s5pw@$lip:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
+#  echo "<$wip:$port:a1:$s5pw>">>/tmp/s5
+#fi 
 
 if [[ $(iptables-save -t nat) =~ MASQUERADE ]]; then     echo ".."; else     iptables -t nat -A POSTROUTING -j MASQUERADE> /tmp/log.log; fi
 service iptables save> /tmp/log.log; echo 1 >/proc/sys/net/ipv4/ip_forward;sysctl -p> /tmp/log.log 
