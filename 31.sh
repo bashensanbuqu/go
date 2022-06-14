@@ -41,9 +41,9 @@ fi
 #   echo 正在处理，请耐心等待
 #   echo -e "\033[33m-------若为多IP服务器请确认是否已配置好IP地址...按任意键继续 或按 Ctrl+c 取消-------\033[0m"&&read -s -n1
 #   echo;rm -fr /tmp/cut&&touch /tmp/cut
-#   read -p "请在30秒内输入端口否则使用随机端口："  -t 30  port
+   read -p "请在30秒内输入端口否则使用随机端口："  -t 30  port
 #   if [ $port -gt 1999 -a $port -lt 60000 ] 2>/dev/null ;then
-   echo -e "\033[33m您输入的端口为：$port\033[0m";echo "port=$port">>/tmp/cut
+#   echo -e "\033[33m您输入的端口为：$port\033[0m";echo "port=$port">>/tmp/cut
 #   else
 #   echo -e "\033[33m您输入的端口错误，将使用随机端口！\033[0m" 
 #   fi
