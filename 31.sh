@@ -29,6 +29,7 @@ fi
 #echo 正在处理，请耐心等待
 rpm -qa|grep "wget" &> /dev/null
 if [ $? == 0 ]; then
+     echo
 #    echo 环境监测通过
 else
     yum -y install wget
