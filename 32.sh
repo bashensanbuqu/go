@@ -121,11 +121,12 @@ iptables -t mangle -A OUTPUT -m owner --uid-owner $[ $i+$uip ] -j MARK --set-mar
 iptables -t nat -A POSTROUTING -m mark --mark $[ $i+$uip ] -j SNAT --to-source `sed -n ''$i'p' /tmp/ip.txt`> /tmp/log.log;
 done
 
+  if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
    echo "$wip/$port/$s5pw/$s5pw">>/tmp/s5
    echo "----------------------">>/tmp/s5
 for i in `seq $v`;
 do
-  if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
+
   echo "su  aa$i -c "\""/usr/local/gost/gost -D -L=$s5pw:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
 #  echo "方式一：<$wip:$[ $i+2210 ]:$s5pw:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:$s5pw:$s5pw>">>/tmp/s5;
    echo "$wip/$[ $i+2210 ]/$s5pw/$s5pw">>/tmp/s5
