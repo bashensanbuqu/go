@@ -122,7 +122,7 @@ iptables -t nat -A POSTROUTING -m mark --mark $[ $i+$uip ] -j SNAT --to-source `
 done
 
    echo "$wip/$port/$s5pw/$s5pw">>/tmp/s5
-   echo "\">>/tmp/s5
+   echo " ">>/tmp/s5
 for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
