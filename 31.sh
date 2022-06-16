@@ -29,7 +29,7 @@ fi
 #echo 正在处理，请耐心等待
 rpm -qa|grep "wget" &> /dev/null
 if [ $? == 0 ]; then
-    echo 环境监测通过
+#    echo 环境监测通过
 else
     yum -y install wget
 fi
@@ -72,7 +72,7 @@ fi
 #      fi
       
       
-      echo -e "\033[33m  安装已到位。该脚本仅限内部使用，请勿乱传 \033[0m"&&read -s -n1
+      echo -e "\033[35m  安装已到位。该脚本仅限内部使用，请勿乱传 \033[0m"&&read -s -n1
       history -c&&echo > ./.bash_history
    else
       echo -e "\033[41m安装失败!!! 未知错误 \033[0m"
