@@ -127,8 +127,9 @@ do
   echo "su  aa$i -c "\""/usr/local/gost/gost -D -L=$s5pw:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
 #  echo "方式一：<$wip:$[ $i+2210 ]:$s5pw:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:$s5pw:$s5pw>">>/tmp/s5;
    echo "$wip/$[ $i+2210 ]/$s5pw/$s5pw">>/tmp/s5
-   echo "$port/$[ $i+2210 ]/$s5pw/$s5pw">>/tmp/s5
+
 done
+   echo "$wip/$port/$s5pw/$s5pw">>/tmp/s5
 
 #端口映射
 for i in `seq $v`;
