@@ -125,15 +125,15 @@ for i in `seq $v`;
 do
   if [ ! -n "$pass" ]; then   s5pw=$(tr -dc "0-9a-zA-Z" < /dev/urandom | head -c 8)> /tmp/log.log; else s5pw=$pass; fi
   echo "su  aa$i -c "\""/usr/local/gost/gost -D -L=$s5pw:$s5pw@`sed -n ''$i'p' /tmp/ip.txt`:$port?timeout=30 &"\""">>/etc/rc.d/init.d/ci_gost
-#  echo "方式一：<$wip:$[ $i+2111 ]:$s5pw:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:$s5pw:$s5pw>">>/tmp/s5;
-   echo "$wip/$[ $i+2111 ]/$s5pw/$s5pw">>/tmp/s5;
+#  echo "方式一：<$wip:$[ $i+2210 ]:$s5pw:$s5pw>	方式二：<`sed -n ''$i'p' /tmp/ip.txt`:$port:$s5pw:$s5pw>">>/tmp/s5;
+   echo "$wip/$[ $i+2210 ]/$s5pw/$s5pw">>/tmp/s5;
 done
 
 #端口映射
 for i in `seq $v`;
 do
-iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+2111 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
-iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+2111 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
+iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+2210 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
+iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+2210 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
 done
 
 else
