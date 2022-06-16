@@ -26,6 +26,7 @@ NETMASK=255.255.255.0' >ifcfg-eth0:3
 /etc/init.d/network restart
 cd
 
+
 v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'| wc -l`
 #num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 
