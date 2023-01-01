@@ -10,11 +10,11 @@ ONBOOT=yes
 IPADDR=10.0.0.11
 NETMASK=255.255.255.0' >ifcfg-eth0:1
 
-#echo 'DEVICE=eth0:2
-#BOOTPROTO=static
-#ONBOOT=yes
-#IPADDR=10.0.0.12
-#NETMASK=255.255.255.0' >ifcfg-eth0:2
+echo 'DEVICE=eth0:2
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=10.0.0.12
+NETMASK=255.255.255.0' >ifcfg-eth0:2
 
 #echo 'DEVICE=eth0:3
 #BOOTPROTO=static
