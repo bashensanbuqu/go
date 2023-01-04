@@ -136,6 +136,7 @@ for i in `seq $v`;
 do
 iptables -t nat -A PREROUTING -d $lip -p tcp --dport $[ $i+2210 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
 iptables -t nat -A PREROUTING -d $lip -p udp --dport $[ $i+2210 ] -j DNAT --to-destination `sed -n ''$i'p' /tmp/ip.txt`:$port> /tmp/log.log;
+iptables -t nat -A PREROUTING -p udp --dst `sed -n ''$i'p' /tmp/ip.txt` -j DNAT --to-destination $lip> /tmp/log.log;
 done
 
 else
