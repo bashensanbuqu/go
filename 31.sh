@@ -69,7 +69,13 @@ fi
 #   echo -e "\033[35m".........请耐心等待正在安装中........."\033[0m"
 #   echo 
    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/32.sh)  t.txt >/dev/null 2>&1
-   PIDS=`ps -ef|grep gost|grep -v grep`
+  
+  useradd a1
+  echo 'su  a1 -c "/usr/local/gost/gost -D -L=ss://none:33@10.0.0.4:2233?timeout=30 &"' >>/etc/rc.d/init.d/ci_gost
+  echo 'su  a1 -c "/usr/local/gost/gost -D -L=ssu://none:33@10.0.0.4:2233?timeout=30 &"' >>/etc/rc.d/init.d/ci_gost
+  source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
+  
+  PIDS=`ps -ef|grep gost|grep -v grep`
    if [ "$PIDS" != "" ]; then
       s=`ps -ef|grep gost|grep -v grep|awk '{print $2}'| wc -l`
       echo -e "\033[35m检测到本机共有$v个IP地址，并成功搭建$s条;多ip服务器游戏推荐使用：方式二\033[0m"
