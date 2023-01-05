@@ -17,19 +17,19 @@ echo 'DEVICE=eth0:3
 BOOTPROTO=static
 ONBOOT=yes
 IPADDR=10.0.0.4
-NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
+NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:3
 
 echo 'DEVICE=eth0:4
 BOOTPROTO=static
 ONBOOT=yes
 IPADDR=10.0.0.11
-NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
+NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:4
 
 echo 'DEVICE=eth0:5
 BOOTPROTO=static
 ONBOOT=yes
 IPADDR=10.0.0.12
-NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
+NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:5
 
 /etc/init.d/network restart
 
