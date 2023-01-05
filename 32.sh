@@ -152,10 +152,10 @@ service iptables save> /tmp/log.log; echo 1 >/proc/sys/net/ipv4/ip_forward;sysct
 ulimit -SHn 10240&&ulimit -SHs unlimited&&echo 500000 >/proc/sys/net/nf_conntrack_max
 rm -fr /tmp/ip.txt&&rm -fr /tmp/gost.tar.gz&&rm -fr /tmp/log.log&&chmod +x /etc/rc.local
 
-sed -i  '1c su  aa1 -c "/usr/local/gost/gost -D -L=ssu://none:2233@10.0.0.4:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
-sed -i  '2c su  aa1 -c "/usr/local/gost/gost -D -L=ss://none:2233@10.0.0.4:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
-sed -i  '3c su  aa2 -c "/usr/local/gost/gost -D -L=ss://none:2233@10.0.0.11:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
-sed -i  '4c su  aa3 -c "/usr/local/gost/gost -D -L=ss://none:2233@10.0.0.12:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
+sed -i  '1c su  aa1 -c "/usr/local/gost/gost -D -L=ssu://none:33@10.0.0.4:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
+sed -i  '2c su  aa1 -c "/usr/local/gost/gost -D -L=ss://none:33@10.0.0.4:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
+sed -i  '3c su  aa2 -c "/usr/local/gost/gost -D -L=ss://none:33@10.0.0.11:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
+sed -i  '4c su  aa3 -c "/usr/local/gost/gost -D -L=ss://none:33@10.0.0.12:2233?timeout=30 &"' /etc/rc.d/init.d/ci_gost
 source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 if cat '/etc/rc.local' | grep "/etc/rc.d/init.d/ci_gost" > /dev/null ;then
   echo '金黄的落叶堆满我心间，我已不再是青春少年。'
