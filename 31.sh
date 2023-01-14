@@ -101,6 +101,6 @@ echo 'a1关' >>/etc/rc.d/init.d/ci_gost
 #else 
 #   echo 
 #   echo -e "\033[41m" 模式错误。该工具仅限内部使用 "\033[0m"
-#   echo 
+   echo 
 
 #fi
