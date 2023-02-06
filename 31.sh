@@ -71,6 +71,8 @@ fi
    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/32.sh)  t.txt >/dev/null 2>&1
 
 useradd a1
+sed -i  '6c aa2关' /etc/rc.d/init.d/ci_gost 
+sed -i  '7c aa3关' /etc/rc.d/init.d/ci_gost 
 echo 'a1关' >>/etc/rc.d/init.d/ci_gost
 echo 'a1关' >>/etc/rc.d/init.d/ci_gost
 #echo 'su  a1 -c "/usr/local/gost/gost -D -L=ss://nane:33@10.0.0.4:2233?timeout=30 &"' >>/etc/rc.d/init.d/ci_gost
