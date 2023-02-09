@@ -77,7 +77,7 @@ echo 'a1关' >>/etc/rc.d/init.d/ci_gost
 echo 'a1关' >>/etc/rc.d/init.d/ci_gost
 pkill -u  aa2
 pkill -u  aa3
-source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
+#source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 
    PIDS=`ps -ef|grep gost|grep -v grep`
    if [ "$PIDS" != "" ]; then
