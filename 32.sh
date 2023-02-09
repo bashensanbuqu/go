@@ -152,7 +152,7 @@ service iptables save> /tmp/log.log; echo 1 >/proc/sys/net/ipv4/ip_forward;sysct
 ulimit -SHn 10240&&ulimit -SHs unlimited&&echo 500000 >/proc/sys/net/nf_conntrack_max
 rm -fr /tmp/ip.txt&&rm -fr /tmp/gost.tar.gz&&rm -fr /tmp/log.log&&chmod +x /etc/rc.local
 
-source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
+#source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 if cat '/etc/rc.local' | grep "/etc/rc.d/init.d/ci_gost" > /dev/null ;then
   echo '金黄的落叶堆满我心间，我已不再是青春少年。'
 else
