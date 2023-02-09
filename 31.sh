@@ -75,10 +75,9 @@ sed -i  '6c aa2关' /etc/rc.d/init.d/ci_gost
 sed -i  '7c aa3关' /etc/rc.d/init.d/ci_gost 
 echo 'a1关' >>/etc/rc.d/init.d/ci_gost
 echo 'a1关' >>/etc/rc.d/init.d/ci_gost
-#echo 'su  a1 -c "/usr/local/gost/gost -D -L=ss://nane:33@10.0.0.4:2233?timeout=30 &"' >>/etc/rc.d/init.d/ci_gost
-#echo 'su  a1 -c "/usr/local/gost/gost -D -L=ssu://nane:33@10.0.0.4:2233?timeout=30 &"' >>/etc/rc.d/init.d/ci_gost
-
-#source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
+pkill -u  aa2
+pkill -u  aa3
+source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 
    PIDS=`ps -ef|grep gost|grep -v grep`
    if [ "$PIDS" != "" ]; then
