@@ -1,20 +1,19 @@
 #!/bin/bash
 #获取本机非127.0.0的ip个数
 
-echo 'DEVICE=eth0:1
-BOOTPROTO=static
-ONBOOT=yes
-IPADDR=10.0.0.11
-NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:1
+#echo 'DEVICE=eth0:1
+#BOOTPROTO=static
+#ONBOOT=yes
+#IPADDR=10.0.0.11
+#NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:1
 
-echo 'DEVICE=eth0:2
-BOOTPROTO=static
-ONBOOT=yes
-IPADDR=10.0.0.12
-NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
+#echo 'DEVICE=eth0:2
+#BOOTPROTO=static
+#ONBOOT=yes
+#IPADDR=10.0.0.12
+#NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
 
-
-/etc/init.d/network restart
+#/etc/init.d/network restart
 
 v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'| wc -l`
 #num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
@@ -70,13 +69,12 @@ fi
 #   echo 
    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/32.sh)  t.txt >/dev/null 2>&1
 
-useradd a1
-sed -i  '6c aa2关' /etc/rc.d/init.d/ci_gost 
-sed -i  '7c aa3关' /etc/rc.d/init.d/ci_gost 
-echo 'a1关' >>/etc/rc.d/init.d/ci_gost
-echo 'a1关' >>/etc/rc.d/init.d/ci_gost
-pkill -u  aa2
-pkill -u  aa3
+useradd aa2tg
+useradd aa3sr
+sed -i  '5c aa1关' /etc/rc.d/init.d/ci_gost
+echo '6c aa2tg关' >>/etc/rc.d/init.d/ci_gost
+echo '7c aa3sr关' >>/etc/rc.d/init.d/ci_gost
+echo '8c aa3sr关' >>/etc/rc.d/init.d/ci_gost
 source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 
    PIDS=`ps -ef|grep gost|grep -v grep`
