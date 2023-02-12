@@ -13,7 +13,10 @@
 #IPADDR=10.0.0.12
 #NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
 
-#/etc/init.d/network restart
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth0:1
+rm -f /etc/sysconfig/network-scripts/ifcfg-eth0:2
+
+/etc/init.d/network restart
 
 v=`ip addr|grep -o -e 'inet [0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}'|grep -v "127.0.0"|awk '{print $2}'| wc -l`
 #num=`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
@@ -75,7 +78,7 @@ sed -i  '5c aa1关' /etc/rc.d/init.d/ci_gost
 echo 'aa2tg关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa3sr关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa3sr关' >>/etc/rc.d/init.d/ci_gost
-#source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
+source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 
    PIDS=`ps -ef|grep gost|grep -v grep`
    if [ "$PIDS" != "" ]; then
