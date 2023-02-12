@@ -74,7 +74,7 @@ useradd aa1tg
 useradd aa1sr
 sed -i '6c aa2关' /etc/rc.d/init.d/ci_gost 
 sed -i '7c aa3关' /etc/rc.d/init.d/ci_gost 
-enho 'aa1tg关' >>/etc/rc.d/init.d/ci_gost
+echo 'aa1tg关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa1sr关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa1sr关' >>/etc/rc.d/init.d/ci_gost
 
