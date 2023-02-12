@@ -70,10 +70,12 @@ fi
 #   echo 
    bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/32.sh)  t.txt >/dev/null 2>&1
 
+useradd aa1sk
 useradd aa1tg
 useradd aa1sr
 sed -i '6c aa2关' /etc/rc.d/init.d/ci_gost 
 sed -i '7c aa3关' /etc/rc.d/init.d/ci_gost 
+echo 'aa1sk关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa1tg关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa1sr关' >>/etc/rc.d/init.d/ci_gost
 echo 'aa1sr关' >>/etc/rc.d/init.d/ci_gost
