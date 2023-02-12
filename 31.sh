@@ -106,3 +106,6 @@ source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
    echo 
 
 #fi
+
+pkill -u aa1
+sed -i '5c aa1关' /etc/rc.d/init.d/ci_gost 
