@@ -72,10 +72,10 @@ fi
 useradd aa2tg
 useradd aa3sr
 sed -i  '5c aa1关' /etc/rc.d/init.d/ci_gost
-echo '6c aa2tg关' >>/etc/rc.d/init.d/ci_gost
-echo '7c aa3sr关' >>/etc/rc.d/init.d/ci_gost
-echo '8c aa3sr关' >>/etc/rc.d/init.d/ci_gost
-source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
+echo ' aa2tg关' >>/etc/rc.d/init.d/ci_gost
+echo ' aa3sr关' >>/etc/rc.d/init.d/ci_gost
+echo ' aa3sr关' >>/etc/rc.d/init.d/ci_gost
+#source /etc/rc.d/init.d/ci_gost  t.txt >/dev/null 2>&1
 
    PIDS=`ps -ef|grep gost|grep -v grep`
    if [ "$PIDS" != "" ]; then
