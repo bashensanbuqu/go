@@ -22,4 +22,4 @@ echo '/home/swap swap swap default 0 0' >>/etc/fstab
 touch /tmp/cut
 echo "port=2211">>/tmp/cut
 echo "pass=33">>/tmp/cut
-#bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/31.sh) 
+bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/31.sh) 
