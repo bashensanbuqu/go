@@ -13,11 +13,11 @@ IPADDR=10.0.0.12
 NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
 /etc/init.d/network restart
 
-dd if=/dev/zero of=/home/swap bs=1024 count=256000
-mkswap /home/swap
-chmod 600 /home/swap
-swapon /home/swap
-echo '/home/swap swap swap default 0 0' >>/etc/fstab
+#dd if=/dev/zero of=/home/swap bs=1024 count=256000
+#mkswap /home/swap
+#chmod 600 /home/swap
+#swapon /home/swap
+#echo '/home/swap swap swap default 0 0' >>/etc/fstab
 
 touch /tmp/cut
 echo "port=2211">>/tmp/cut
