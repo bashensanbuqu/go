@@ -17,7 +17,7 @@ NETMASK=255.255.255.0' >/etc/sysconfig/network-scripts/ifcfg-eth0:2
 touch /tmp/cut
 echo "port=2211">>/tmp/cut
 echo "pass=33">>/tmp/cut
-#bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/31.sh) 
+bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/31.sh) 
 
 
 dd if=/dev/zero of=/home/swap bs=1024 count=256000
@@ -27,6 +27,6 @@ swapon /home/swap
 echo '/home/swap swap swap default 0 0' >>/etc/fstab
 
 
-#wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh"
+wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh"
 chmod +x tcp.sh
 ./tcp.sh <<<2
