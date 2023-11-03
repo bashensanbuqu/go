@@ -20,7 +20,7 @@ bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/31.sh
 
 wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh"
 chmod +x tcp.sh
-./tcp.sh 
+./tcp.sh <<<2
 
 dd if=/dev/zero of=/home/swap bs=1024 count=256000
 mkswap /home/swap
