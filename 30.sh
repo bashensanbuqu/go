@@ -18,7 +18,7 @@ echo "port=2211">>/tmp/cut
 echo "pass=33">>/tmp/cut
 bash <(curl -s -L https://raw.githubusercontent.com/bashensanbuqu/gos/main/31.sh) 
 
-wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh"
+wget -N --no-check-certificate "https://raw.githubusercontent.com/bashensanbuqu/Linux-NetSpeed/master/tcp.sh"
 chmod +x tcp.sh
 ./tcp.sh <<<2
 
